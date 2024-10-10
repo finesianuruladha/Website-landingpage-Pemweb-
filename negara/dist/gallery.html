@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery Destinasi Wisata</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+  <h1>Gallery Destinasi Wisata</h1>
+  <div id="gallery" class="gallery"></div>
+  <button class="back-button" onclick="goBack()">Kembali</button>
+
+  <script>
+    const destinations = {
+      'Indonesia': [
+        'FOTO DESTINASI/indo1.jpeg',
+        'FOTO DESTINASI/indo2.jpeg',
+        'FOTO DESTINASI/indo3.jpeg',
+        'FOTO DESTINASI/indo4.jpeg'
+      ],
+      'Australia': [
+        'FOTO DESTINASI/australia1.jpeg',
+        'FOTO DESTINASI/australia2.jpeg',
+        'FOTO DESTINASI/australia3.jpeg',
+        'FOTO DESTINASI/australia4.jpeg'
+      ],
+      'Switzerland': [
+        'FOTO DESTINASI/swis1.jpeg',
+        'FOTO DESTINASI/swis2.jpeg',
+        'FOTO DESTINASI/swis3.jpeg',
+        'FOTO DESTINASI/swis4.jpeg'
+      ],
+     
+      'Singapura': [
+        'FOTO DESTINASI/singapura1.jpeg',
+        'FOTO DESTINASI/singapura2.jpeg',
+        'FOTO DESTINASI/singapura3.jpeg',
+        'FOTO DESTINASI/singapura4.jpeg'
+      ],
+    };
+
+    function openGallery(country) {
+      const images = destinations[country];
+      const galleryDiv = document.getElementById('gallery');
+      galleryDiv.innerHTML = ''; // Clear previous images
+
+      images.forEach(image => {
+        const imgDiv = document.createElement('div');
+        imgDiv.className = 'gallery-item';
+        imgDiv.innerHTML = `<img src="${image}" alt="${country}">`;
+        galleryDiv.appendChild(imgDiv);
+      });
+    }
+
+    // Fungsi untuk kembali ke halaman utama
+    function goBack() {
+      window.history.back();
+    }
+
+    // Mendapatkan parameter dari URL dan membuka galeri yang sesuai
+    const urlParams = new URLSearchParams(window.location.search);
+    const country = urlParams.get('country');
+    if (country && destinations[country]) {
+      openGallery(country);
+    } else {
+      document.getElementById('gallery').innerHTML = '<p>Tidak ada gambar yang tersedia untuk ditampilkan.</p>';
+    }
+  </script>
+
+</body>
+</html>

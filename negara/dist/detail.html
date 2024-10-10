@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail Negara</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+
+<div class="container">
+    <h1 id="countryName"></h1>
+    <img id="countryImage" src="" alt="Country Image">
+    <p id="countryDescription"></p>
+
+    <!-- Tombol Lihat -->
+    <button id="viewGalleryButton" class="seeMore">Lihat</button>
+
+    <!-- Tombol Kembali -->
+    <a href="index.html"><i class="fa-solid fa-arrow-left icon"></i>Kembali</a>
+</div>
+
+<script>
+    // Ambil parameter 'country' dari URL
+    const params = new URLSearchParams(window.location.search);
+    const country = params.get('country');
+
+    // Data untuk gambar dan deskripsi negara
+    const countryData = {
+        'Switzerland': {
+            image: 'swis2.jpeg',
+            description: 'Swiss, atau Swiss, adalah negara di Eropa Tengah yang terkenal dengan pegunungan Alpen yang indah, kota-kota bersih, danau-danau jernih, serta keragaman budaya. Negara ini memiliki beberapa kota terkenal seperti Zurich, Jenewa, dan Bern, yang menawarkan perpaduan antara sejarah, arsitektur modern, dan alam. Swiss juga dikenal sebagai pusat perbankan dunia, produsen jam tangan mewah, serta cokelat dan keju berkualitas tinggi. Sebagai destinasi wisata, Swiss menarik dengan aktivitas seperti ski, hiking, dan perjalanan kereta melalui pemandangan alam yang menakjubkan.'
+        },
+        
+        'Indonesia': {
+            image: 'indo.jpeg',
+            description: 'Indonesia, negara kepulauan terbesar di dunia, terdiri dari lebih dari 17.000 pulau yang membentang di Asia Tenggara dan Oseania. Terkenal dengan keanekaragaman budaya, bahasa, dan agama, Indonesia menawarkan destinasi wisata yang kaya, mulai dari pantai-pantai eksotis, pegunungan vulkanik, hingga hutan tropis yang memukau. Dengan kekayaan budaya seperti batik, tari tradisional, dan kuliner yang menggugah selera, setiap daerah di Indonesia memiliki daya tarik unik. Dari Bali yang terkenal hingga pulau-pulau tersembunyi seperti Raja Ampat, Indonesia adalah surga bagi pecinta alam dan petualangan.'
+        },
+        'Australia': {
+            image: 'australia.jpeg',
+            description: 'Australia, negara sekaligus benua yang terletak di belahan selatan, dikenal dengan keindahan alamnya yang luar biasa dan keragaman satwa yang unik. Dari pantai-pantai berpasir putih di Gold Coast hingga kawasan pedalaman (outback) yang luas dan terjal, Australia menawarkan pengalaman wisata yang memukau. Kota-kota seperti Sydney, dengan ikon terkenalnya Sydney Opera House, dan Melbourne yang dinamis, memberikan perpaduan sempurna antara kehidupan perkotaan modern dan akses ke alam. Selain itu, Great Barrier Reef, terumbu karang terbesar di dunia, serta satwa khas seperti kanguru dan koala, menjadikan Australia tujuan yang menarik bagi wisatawan dari seluruh dunia.'
+        },
+        'Singapura': {
+            image: 'singapura.jpeg',
+            description: 'Singapura, negara modern di Asia Tenggara terkenal dengan infrakstruktur canggih dan lingkungan bersih DEngan populasi multikultur,negara ini menawarkan beragam kuliner dan atraksi menarik.'
+        }
+    };
+
+    // Set konten berdasarkan negara yang dipilih
+    if (country && countryData[country]) {
+        document.getElementById('countryName').textContent = country;
+        document.getElementById('countryImage').src = countryData[country].image;
+        document.getElementById('countryDescription').textContent = countryData[country].description;
+    } else {
+        document.getElementById('countryName').textContent = 'Negara tidak ditemukan';
+    }
+
+    // Event listener untuk tombol "Lihat"
+    document.getElementById("viewGalleryButton").addEventListener("click", function() {
+        window.location.href = "gallery.html?country=" + encodeURIComponent(country);
+    });
+</script>
+
+</body>
+</html>
